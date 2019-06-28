@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "958397478548",
+    "firebase_url": "https://bookingfutsal-app.firebaseio.com",
+    "project_id": "bookingfutsal-app",
+    "storage_bucket": "bookingfutsal-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958397478548:android:1b050efd070e7e18",
+        "android_client_info": {
+          "package_name": "com.example.bookingfutsal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958397478548-c1jvo0260ckkfi4mpsa755l3cmhl72qf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhY2j9xD_IA-ZkHaAN79jZ13Gx19ekKbU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958397478548-c1jvo0260ckkfi4mpsa755l3cmhl72qf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

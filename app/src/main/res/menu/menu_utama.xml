@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.asus.bookingfutsal.utama">
+
+    <item
+        android:id="@+id/btnlogoutuser"
+        android:orderInCategory="100"
+        android:title="LOGOUT"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/btnkeluar"
+        android:orderInCategory="100"
+        android:title="KELUAR"
+        app:showAsAction="never" />
+</menu>
