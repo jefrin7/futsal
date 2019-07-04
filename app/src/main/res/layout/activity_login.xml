@@ -2,8 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backgroundutama"
-    android:scrollbars="none"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical">
+
             <Space
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
@@ -25,30 +26,31 @@
                 android:text="prev" />
 
             <Space
-                android:text="Hi its working"
                 android:layout_width="8dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:text="Hi its working" />
 
             <Button
-                android:id="@+id/btnabout"
+                android:id="@+id/btntentang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/input_form"
                 android:drawableLeft="@drawable/aboutbutton"
                 android:drawablePadding="6dp"
-                android:layout_marginTop="45dp"
-                android:onClick="btnAbout"
-                android:background="@drawable/input_form"
-                android:text="Tentang"
+                android:onClick="btntentang"
+                android:text="about"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
             <ImageView
                 android:id="@+id/listview_image"
                 android:layout_width="94dp"
@@ -57,75 +59,64 @@
                 android:padding="5dp"
                 android:src="@drawable/splash" />
 
-        <TextView
-            android:id="@+id/judul"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="BOOKING FUTSAL LOGIN"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="30dp" />
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="BOOKING FUTSAL LOGIN"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
 
-
         <EditText
-                android:id="@+id/editTextUserName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username"
-                android:layout_marginTop="50dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:id="@+id/editTextUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/input_form"
             android:drawableLeft="@drawable/emailedittext"
             android:drawablePadding="6dp"
-                android:background="@drawable/input_form"
-                android:inputType="textEmailAddress" />
+            android:hint="Username"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
 
         <EditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Password"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:id="@+id/editTextPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/input_form"
             android:drawableLeft="@drawable/passedittext"
             android:drawablePadding="6dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/input_form"
-                android:inputType="textPassword" />
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
 
-        <LinearLayout android:layout_width="fill_parent"
-            android:id="@+id/linearLayout1" android:layout_height="fill_parent">
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
             <Button
                 android:id="@+id/buttonLogin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="70dp"
                 android:layout_weight="1"
                 android:width="0dp"
-                android:drawableLeft="@drawable/loginadmin"
                 android:background="@drawable/input_form"
+                android:drawableLeft="@drawable/loginadmin"
                 android:gravity="center"
-                android:text="LOGIN ADMIN"
+                android:text="LOGIN"
                 android:textColor="@color/white" />
 
-            <Button
-                android:id="@+id/buttonLoginuser"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
-                android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                android:width="0dp"
-                android:background="@drawable/input_form"
-                android:drawableLeft="@drawable/loginuser"
-                android:gravity="center"
-                android:text="LOGIN USER"
-                android:textColor="@color/white" />
         </LinearLayout>
 
         <Button
@@ -133,10 +124,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:drawableLeft="@drawable/registerbutton"
             android:layout_marginTop="30dp"
-            android:onClick="btnRegister"
             android:background="@drawable/input_form"
+            android:drawableLeft="@drawable/registerbutton"
+            android:onClick="btnRegister"
             android:text="REGISTER"
             android:textColor="@android:color/white" />
 

@@ -16,10 +16,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText editTextPassword;
 
     //Declaration Button
-    Button buttonLogin;
     Button buttonLoginuser;
 
-//    Declaration SqliteHelper
+    //    Declaration SqliteHelper
     SqliteHelper sqliteHelper;
 
     @Override
@@ -37,77 +36,80 @@ public class LoginActivity extends AppCompatActivity {
                 //mengecek user input sudah benar atau belum
                 if (validate()) {
 
-                    String user = editTextusername.getText().toString();
+                    String EMAIL = editTextusername.getText().toString();
                     String Password = editTextPassword.getText().toString();
 
-                    User currentUser = sqliteHelper.Authenticate(new User(null, null, user, Password));
+                    //Authenticate user
+                    User currentUser = sqliteHelper.Authenticate(new User(null, null, EMAIL, Password));
 
+                    //Check Authentication is successful or not
+                    if (currentUser != null) {
 
-                        //jika user berhasil login maka munculkan activity user
-                       Intent intent=new Intent(LoginActivity.this,utama.class);
+                        //User Logged in Successfully Launch You home screen activity
+                        Intent intent = new Intent(LoginActivity.this, dashboard.class);
                         startActivity(intent);
                         finish();
-                }
-            }
-        });
 
-        editTextusername = (EditText) findViewById(R.id.editTextUserName);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonLogin = (Button)findViewById(R.id.buttonLogin);
+                    } else {
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                        //User Logged in Failed
+                        Toast.makeText(LoginActivity.this, "Failed to log in , please try againy", Toast.LENGTH_LONG).show();
 
-                String userKey = editTextusername.getText().toString();
-                String passwordKey = editTextPassword.getText().toString();
+                    }
 
-                if (userKey.equals("admin@bookingfutsal.com") && passwordKey.equals("bookingfutsal12345")){
-
-                    Toast.makeText(getApplicationContext(), "LOGIN SUKSES",
-                            Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, dashboard.class);
-                    LoginActivity.this.startActivity(intent);
-                    finish();
-                }else {
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("Username atau Password Anda salah!")
-                            .setNegativeButton("Retry", null).create().show();
                 }
             }
 
         });
     }
 
-    public void btnRegister(View v){
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-    }
-
-    public void btnAbout(View v){
+    public void btntentang(View view) {
         Intent intent = new Intent(LoginActivity.this, tentang.class);
+        startActivity(intent);
+    }
+
+    public void btnRegister(View v) {
+        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 
     private void initViews() {
         editTextusername = (EditText) findViewById(R.id.editTextUserName);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        buttonLoginuser = (Button) findViewById(R.id.buttonLoginuser);
+        buttonLoginuser = (Button) findViewById(R.id.buttonLogin);
 
     }
 
+    //This method is used to validate input given by user
     public boolean validate() {
         boolean valid = false;
 
-
-        String user = editTextusername.getText().toString();
+        //Get values from EditText fields
+        String Email = editTextusername.getText().toString();
         String Password = editTextPassword.getText().toString();
 
+        //Handling validation for Email field
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+            valid = false;
+            editTextusername.setError("Please enter valid email!");
+        } else {
+            valid = true;
+            editTextusername.setError(null);
+        }
 
-            Toast.makeText(this, "Masukkan e-mail yang benar", Toast.LENGTH_LONG).show();
-            Toast.makeText(this, "Tolong isi password yang benar", Toast.LENGTH_LONG).show();
+        //Handling validation for Password field
+        if (Password.isEmpty()) {
+            valid = false;
+            editTextPassword.setError("Please enter valid password!");
+        } else {
+            if (Password.length() > 5) {
+                valid = true;
+                editTextPassword.setError(null);
+            } else {
+                valid = false;
+                editTextPassword.setError("Password is to short!");
+            }
+        }
 
         return valid;
     }

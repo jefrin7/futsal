@@ -9,8 +9,8 @@ public class tentang extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tentang);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.about);
+        getSupportActionBar().setDisplayShowHomeEnabled(false);
+        getSupportActionBar().setLogo(R.drawable.aboutbutton);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 }

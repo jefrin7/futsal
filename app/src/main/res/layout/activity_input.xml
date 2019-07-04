@@ -44,6 +44,17 @@
         android:textColorHint="@color/white"
         android:background="@drawable/input_form"
         android:hint="Nama Pembooking"/>
+    <EditText
+        android:layout_weight="1"
+        android:id="@+id/tanggalmain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+        android:background="@drawable/input_form"
+        android:hint="tanggal main"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -59,15 +70,6 @@
             android:inputType="textMultiLine"
             android:background="@drawable/input_form"
             android:hint="Jam Main"/>
-        <Button android:id="@+id/resetbooking"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginLeft="3dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/input_form"
-            android:layout_width="wrap_content"
-            android:text="RESET" />
     </LinearLayout>
     <Spinner
         android:id="@+id/spinner_lapangan"
@@ -108,7 +110,8 @@
         android:hint="Keterangan"/>
 
     <LinearLayout android:layout_width="fill_parent"
-        android:id="@+id/linearLayout1" android:layout_height="fill_parent">
+        android:id="@+id/linearLayout1"
+        android:layout_height="fill_parent">
         <Button
             android:id="@+id/buttontambah"
             android:layout_width="0dp"

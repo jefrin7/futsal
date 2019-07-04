@@ -19,6 +19,10 @@ public class dashboard extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void btnViewData (View view){
+        Intent intent = new Intent(dashboard. this, showdata.class);
+        startActivity(intent);
+    }
 
     public void btnLogout(View v){
         Intent intent = new Intent(dashboard.this, LoginActivity.class);

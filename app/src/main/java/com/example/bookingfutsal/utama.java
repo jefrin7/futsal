@@ -1,8 +1,10 @@
 package com.example.bookingfutsal;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -10,46 +12,91 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class utama extends AppCompatActivity {
-
-    ListView listViewArtist;
-
-    List<Booking> bookingList;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_utama, menu);
-        return true;
-    }
+    String[] daftar;
+    ListView ListView01;
+    protected Cursor cursor;
+    DBDataSource dbcenter;
+    public static utama ma;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_utama);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setLogo(R.drawable.home2);
-        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        listViewArtist = (ListView) findViewById(R.id.list_booking);
-        bookingList = new ArrayList<>();
-
-        }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-                BookingList adapter = new BookingList(utama.this, bookingList);
-                listViewArtist.setAdapter(adapter);
+         Button tambah = (Button) findViewById(R.id.tambah);
+        tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(utama.this, input.class);
+                startActivity(intent);
             }
+        });
 
+        ma = this;
+        dbcenter = new DBDataSource(this);
+        RefreshList();
+    }
+
+    public void RefreshList() {
+        SQLiteDatabase db = dbcenter.getReadableDatabase();
+        cursor = db.rawQuery("SELECT * FROM biodata", null);
+        daftar = new String[cursor.getCount()];
+        cursor.moveToFirst();
+        for (int cc = 0; cc < cursor.getCount(); cc++) {
+            cursor.moveToPosition(cc);
+            daftar[cc] = cursor.getString(1).toString();
+        }
+        ListView01 = (ListView) findViewById(R.id.listView1);
+        ListView01.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, daftar));
+        ListView01.setSelected(true);
+        ListView01.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+            public void onItemClick(AdapterView arg0, View arg1, int arg2, long arg3) {
+                final String selection = daftar[arg2]; //.getItemAtPosition(arg2).toString();
+                final CharSequence[] dialogitem = {"Lihat booking", "Update booking", "Hapus booking"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(utama.this);
+                builder.setTitle("Pilihan");
+                builder.setItems(dialogitem, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int item) {
+                        switch (item) {
+                            case 0:
+                                Intent i = new Intent(getApplicationContext(), showdata.class);
+                                i.putExtra("nama", selection);
+                                startActivity(i);
+                                break;
+                            case 1:
+                                Intent in = new Intent(getApplicationContext(), Update.class);
+                                in.putExtra("nama", selection);
+                                startActivity(in);
+                                break;
+                            case 2:
+                                SQLiteDatabase db = dbcenter.getWritableDatabase();
+                                db.execSQL("delete from biodata where nama = '" + selection + "'");
+                                RefreshList();
+                                break;
+                        }
+                    }
+                });
+                builder.create().show();
+            }
+        });
+        ((ArrayAdapter) ListView01.getAdapter()).notifyDataSetInvalidated();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_utama, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -59,53 +106,10 @@ public class utama extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.btnlogoutuser) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("LOGOUT");
-            builder.setMessage("Apakah Anda Mau Logout?");
-            builder.setPositiveButton("YA", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(utama.this, LoginActivity.class);
-                    startActivity(intent);
-                    onBackPressed();
-
-
-                }
-            });
-
-            builder.setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
+        if (id == R.id.showketerangan) {
+            return true;
         }
-        if (id == R.id.btnkeluar) {
 
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("KELUAR");
-            builder.setMessage("Apakah Anda Mau Keluar?");
-            builder.setPositiveButton("YA", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-//                    System.exit(0);
-
-                }
-            });
-
-            builder.setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-
-                }
-            });
-            builder.show();
-
-        }
         return super.onOptionsItemSelected(item);
     }
-}
+    }

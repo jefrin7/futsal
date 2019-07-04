@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SqliteHelper extends SQLiteOpenHelper {
 
@@ -44,11 +45,13 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase sqLiteDatabase ) {
         //membuat table ketika oncreate method dipanggil
         sqLiteDatabase.execSQL(SQL_TABLE_USERS);
-
-    }
+            String sql = "create table booking(no integer primary key, nama text null, tgl text null, jam text null, lapangan text null, biaya text null, keterangan text null);";
+            Log.d("Data","onCreate: "+sql);
+            sqLiteDatabase.execSQL(sql);
+        }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
@@ -113,4 +116,5 @@ public class SqliteHelper extends SQLiteOpenHelper {
         //jika email tidak ada return false
         return false;
     }
+
 }
