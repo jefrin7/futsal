@@ -4,10 +4,12 @@
     <string name="kata_about">BOOKINGFUTSAL adalah sebuah aplikasi yang dibuat dengan tujuan untuk memudahkan kita dalam melakukan pembookingan lapangan futsal</string>
 
     <string-array name="lapangan">
-        <item>PILIH JENIS LAPANGAN</item>
-        <item>Rumput Sintetis</item>
-        <item>Plester</item>
-        <item>Ubin</item>
+        <item>MAIN/Jam :</item>
+        <item>1 JAM</item>
+        <item>2 JAM</item>
+        <item>3 JAM</item>
+        <item>4 JAM</item>
+        <item>5 Jam</item>
     </string-array>
 
     <string name="back_to_login">Back to Login</string>

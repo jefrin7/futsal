@@ -8,8 +8,7 @@
     android:background="@drawable/backgroundutama"
     android:fitsSystemWindows="true">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -43,7 +42,7 @@
         android:inputType="textFilter"
         android:textColorHint="@color/white"
         android:background="@drawable/input_form"
-        android:hint="Nama Pembooking"/>
+        android:hint="Nama Pemesan"/>
     <EditText
         android:layout_weight="1"
         android:id="@+id/tanggalmain"
@@ -54,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:inputType="textMultiLine"
         android:background="@drawable/input_form"
-        android:hint="tanggal main"/>
+        android:hint="Alamat / No.HP"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -69,8 +68,20 @@
             android:layout_marginTop="8dp"
             android:inputType="textMultiLine"
             android:background="@drawable/input_form"
-            android:hint="Jam Main"/>
+            android:hint="Tanggal Main"/>
+
     </LinearLayout>
+    <EditText
+        android:layout_weight="1"
+        android:id="@+id/jammain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+        android:background="@drawable/input_form"
+        android:hint="Waktu Main"/>
     <Spinner
         android:id="@+id/spinner_lapangan"
         android:layout_width="match_parent"
@@ -137,7 +148,7 @@
             android:background="@drawable/input_form"
             android:drawableLeft="@drawable/deletebutton"
             android:gravity="center"
-            android:text="RESET FORM"
+            android:text="RESET DATA"
             android:textColor="@color/white" />
     </LinearLayout>
 
